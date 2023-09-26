@@ -1,4 +1,4 @@
-import { Float,OrbitControls,useScroll } from "@react-three/drei";
+import { Float,OrbitControls,useScroll,Text } from "@react-three/drei";
 import { PerspectiveCamera } from "@react-three/drei";
 import { Background } from "./background";
 import { Airplane } from "./airplane";
@@ -6,11 +6,13 @@ import {Cloud} from "./cloud";
 import * as THREE from 'three';
 import { useMemo,useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { BrowserRouter as  Link } from 'react-router-dom';
 
 
 
 
-const LINE_NB_POINTS = 2000;
+
+const LINE_NB_POINTS = 12000;
 
 export const Experience = () => {
 
@@ -34,6 +36,9 @@ export const Experience = () => {
       0.5
     );
   }, []);
+
+
+  
 
 
   const linepoints = useMemo(() =>{
@@ -66,7 +71,7 @@ export const Experience = () => {
 
     const angleRotation =
       (xDisplacement < 0 ? 1 : -1) *
-      Math.min(Math.abs(xDisplacement), Math.PI / 4);
+      Math.min(Math.abs(xDisplacement), Math.PI / 6);
 
     const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
       new THREE.Euler(
@@ -83,11 +88,11 @@ export const Experience = () => {
       )
     );
 
-    airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 2);
-    CameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 2);
+    airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 6);
+    CameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 6);
 
 
-    CameraGroup.current.position.lerp(curPoint, delta*24);
+    CameraGroup.current.position.lerp(curPoint, delta*14);
   });
   
 
@@ -105,6 +110,80 @@ export const Experience = () => {
       </Float>
       </group>
       </group>
+
+      <group position={[2,2,3]}>
+      <Text
+      color = "white"
+      anchorX = {"left"}
+      anchorY = {"middle"}
+      fontSize ={.5}
+      maxWidth = {2.5}
+      font={"/Fonts/Fuggles/Fuggles-Regular.ttf"}
+      >
+        Hii I am Riju Mondal{"\n"}
+        A Full Stack Developer and QA Engineer
+      </Text>
+      </group> 
+
+
+      <group position={[-2,3,-40]} >
+        <Text
+          color="white"
+          anchorX="right"
+          anchorY="middle"
+          fontSize={1}
+          maxWidth={2.5}
+          font="/Fonts/Fuggles/Fuggles-Regular.ttf"
+        >
+          Projects{"\n"}
+          1.Movie Recommendation App
+          2.Parallax Website
+
+        </Text>
+            
+      </group>
+
+
+
+      <group position={[4,3,-70]} >
+        <Text
+          color="white"
+          anchorX="right"
+          anchorY="middle"
+          fontSize={1}
+          maxWidth={2.5}
+          font="/Fonts/Fuggles/Fuggles-Regular.ttf"
+        >
+          Open Source Contribution{"\n"}
+          1.Cal.com
+          2.Home-Assistant
+
+        </Text>
+            
+      </group>
+
+
+
+      
+      <group position={[4,3,-100]} >
+        <Text
+          color="white"
+          anchorX="right"
+          anchorY="middle"
+          fontSize={1}
+          maxWidth={2.5}
+          font="/Fonts/Fuggles/Fuggles-Regular.ttf"
+        >
+          Profile{"\n"}
+          1.Leetcode
+          2.Linkedin
+          3.Github
+
+        </Text>
+            
+      </group>
+      
+      
       
  
 
@@ -124,7 +203,7 @@ export const Experience = () => {
 
 
       <Cloud opacity={0.5} scale={[0.3, 0.3, 0.3]} position={[-2, 1, -3]} />
-      <Cloud opacity={0.5} scale={[-0.2, 0.7, -0.4]} position={[1.5, -2, -2]} />
+      <Cloud opacity={0.7} scale={[0.5, 0.5, 0.5]} position={[1.5, 4, -2]} />
       <Cloud
         opacity={0.7}
         scale={[0.3, 0.3, 0.4]}
@@ -138,6 +217,9 @@ export const Experience = () => {
         position={[1, -0.2, -12]}
       />
       <Cloud opacity={0.7} scale={[0.5, 0.5, 0.5]} position={[-1, 1, -53]} />
+      <Cloud opacity={0.7} scale={[0.8, 0.8, 0.8]} position={[-4, 6, -10]} />
+      <Cloud opacity={0.5} scale={[0.8, 0.8, 0.8]} position={[-12, 5, -15]} />
+      <Cloud opacity={0.5} scale={[0.8, 0.8, 0.8]} position={[-15, 8, -20]} />
       <Cloud opacity={0.3} scale={[0.8, 0.8, 0.8]} position={[0, 1, -100]} />
 
       

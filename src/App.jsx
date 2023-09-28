@@ -16,11 +16,11 @@ function App() {
         fov: 30,
       }}>
         <color attach="background" args={["#ececec"]} />
-        <ScrollControls pages={5} damping={0.3}>
+        <ScrollControls pages={6} damping={0.7}>
         <Experience />
         </ScrollControls>
       </Canvas>
-      <Overlay/>
+      {/*<Overlay/>*/}
     </>
   );
 }

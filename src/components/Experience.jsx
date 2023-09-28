@@ -6,13 +6,14 @@ import {Cloud} from "./cloud";
 import * as THREE from 'three';
 import { useMemo,useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { BrowserRouter as  Link } from 'react-router-dom';
+
 
 
 
 
 
 const LINE_NB_POINTS = 12000;
+const curvedistance = 25;
 
 export const Experience = () => {
 
@@ -20,16 +21,11 @@ export const Experience = () => {
     return new THREE.CatmullRomCurve3(
       [
         new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(0, 0, -10),
-        new THREE.Vector3(-2, 0, -20),
-        new THREE.Vector3(-3, 0, -30),
-        new THREE.Vector3(0, 0, -40),
-        new THREE.Vector3(5, 0, -50),
-        new THREE.Vector3(7, 0, -60),
-        new THREE.Vector3(5, 0, -70),
-        new THREE.Vector3(0, 0, -80),
-        new THREE.Vector3(0, 0, -90),
-        new THREE.Vector3(0, 0, -100),
+        new THREE.Vector3(0, 0, -1*curvedistance),
+        new THREE.Vector3(-5, 0, -2*curvedistance),
+        new THREE.Vector3(-5, 0, -3*curvedistance),
+        new THREE.Vector3(0, 0, -4*curvedistance),
+        
       ],
       false,
       "catmullrom",
@@ -37,7 +33,8 @@ export const Experience = () => {
     );
   }, []);
 
-
+  const sceneOpacity = useRef(0);
+  const lineMaterialRef = useRef();
   
 
 
@@ -57,50 +54,45 @@ export const Experience = () => {
   
   const CameraGroup = useRef();
   const scroll = useScroll();
-   
+  const curve_ahead_camera = 0.008;
 
   useFrame((_state, delta) => {
-    const curPointIndex = Math.min(
-      Math.round(scroll.offset * linepoints.length),
-      linepoints.length - 1
-    )
-    const curPoint = linepoints[curPointIndex];
-    const pointAhead = linepoints[Math.min(curPointIndex + 1), linepoints.length-1];
 
-    const xDisplacement = (pointAhead.x - curPoint.x) * 80;
+    const scrollOffset = Math.max(0,scroll.offset);
 
-    const angleRotation =
-      (xDisplacement < 0 ? 1 : -1) *
-      Math.min(Math.abs(xDisplacement), Math.PI / 6);
+    const curPoint = curve.getPoint(scrollOffset);
 
-    const targetAirplaneQuaternion = new THREE.Quaternion().setFromEuler(
-      new THREE.Euler(
-        airplane.current.rotation.x,
-        airplane.current.rotation.y,
-        angleRotation
-      )
-    );
-    const targetCameraQuaternion = new THREE.Quaternion().setFromEuler(
-      new THREE.Euler(
-        CameraGroup.current.rotation.x,
-        angleRotation,
-        CameraGroup.current.rotation.z
-      )
+    CameraGroup.current.position.lerp(curPoint, delta * 24);
+
+    const lookAtpoint = curve.getPoint(Math.min(scrollOffset + curve_ahead_camera,1));
+
+
+    const currentLookAt = CameraGroup.current.getWorldDirection(
+      new THREE.Vector3()
     );
 
-    airplane.current.quaternion.slerp(targetAirplaneQuaternion, delta * 6);
-    CameraGroup.current.quaternion.slerp(targetCameraQuaternion, delta * 6);
+    const targetLookAt = new THREE.Vector3()
+    .subVectors(curPoint,lookAtpoint)
+    .normalize();
 
-
-    CameraGroup.current.position.lerp(curPoint, delta*14);
+    const lookAt = currentLookAt.lerp(targetLookAt, delta * 24);
+    CameraGroup.current.lookAt(
+      CameraGroup.current.position.clone().add(lookAt)
+    );
   });
+
+      
   
+    
+ 
+
+    
 
   const airplane = useRef();
 
   return (
     <>
-      {/*<OrbitControls enableZoom ={false}/>*/}
+      {/*<OrbitControls />*/}
       <group ref={CameraGroup} >
       <Background/>
       <PerspectiveCamera position={[0, 2, 12]} fov={30} makeDefault />

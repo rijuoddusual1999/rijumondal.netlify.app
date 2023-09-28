@@ -6,32 +6,67 @@ import {Cloud} from "./cloud";
 import * as THREE from 'three';
 import { useMemo,useRef } from "react";
 import { useFrame } from "@react-three/fiber";
+import { TextSection } from "./texts";
 
 
 
 
 
 
-const LINE_NB_POINTS = 12000;
+const LINE_NB_POINTS = 1000;
 const curvedistance = 25;
 
 export const Experience = () => {
 
+
+  const curvepoints = useMemo(() => 
+    [
+      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(0, 0, -1*curvedistance),
+      new THREE.Vector3(-5, 0, -2*curvedistance),
+      new THREE.Vector3(-5, 0, -3*curvedistance),
+      new THREE.Vector3(0, 0, -5*curvedistance),
+      
+    ],[]
+
+  );
+
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3(
-      [
-        new THREE.Vector3(0, 0, 0),
-        new THREE.Vector3(0, 0, -1*curvedistance),
-        new THREE.Vector3(-5, 0, -2*curvedistance),
-        new THREE.Vector3(-5, 0, -3*curvedistance),
-        new THREE.Vector3(0, 0, -4*curvedistance),
-        
-      ],
+      curvepoints,
       false,
       "catmullrom",
       0.5
     );
   }, []);
+
+
+
+
+
+
+  const textSection = useMemo(() => {
+    return[{
+      position: new THREE.Vector3(
+        curvepoints[1].x-3,
+        curvepoints[1].y,
+        curvepoints[1].z
+
+      ),
+
+      title: 'Hii I am Riju Mondal, A Fullstack Developer && QA Engineer'
+    }
+    ]
+  })
+
+
+
+
+
+
+
+
+
 
   const sceneOpacity = useRef(0);
   const lineMaterialRef = useRef();
@@ -54,9 +89,16 @@ export const Experience = () => {
   
   const CameraGroup = useRef();
   const scroll = useScroll();
-  const curve_ahead_camera = 0.008;
+  const curve_ahead_camera = 0.007;
+  const curve_ahead_airplane = 0.03;
+  const max_bank_angle = 65;
 
   useFrame((_state, delta) => {
+
+    
+    
+
+
 
     const scrollOffset = Math.max(0,scroll.offset);
 
@@ -79,7 +121,62 @@ export const Experience = () => {
     CameraGroup.current.lookAt(
       CameraGroup.current.position.clone().add(lookAt)
     );
+
+
+
+    const tangent = curve.getTangent(scrollOffset+ curve_ahead_airplane);
+
+
+    const nonlerplookup = new THREE.Group();
+    nonlerplookup.position.copy(curPoint);
+    nonlerplookup.lookAt(nonlerplookup.position.clone().add(targetLookAt));
+
+
+    tangent.applyAxisAngle(
+      new THREE.Vector3(0,1,0),
+      -nonlerplookup.rotation.y
+
+    )
+    
+
+    let bankangle = Math.atan2(-tangent.z,tangent.x);
+    bankangle = -Math.PI/2 + bankangle;
+
+    let bankradiandegrees = (bankangle*180)/Math.PI;
+    bankradiandegrees *= 15;
+
+    if(bankradiandegrees<0){
+      bankradiandegrees = Math.max(bankradiandegrees,-max_bank_angle);
+    }
+    else if(bankradiandegrees>0){
+        bankradiandegrees = Math.min(bankradiandegrees,max_bank_angle);
+    }
+
+
+    bankangle = (bankradiandegrees*Math.PI)/180 ;
+
+
+
+
+
+    const targetairplanequaternion = new THREE.Quaternion().setFromEuler(
+         new THREE.Euler(
+          airplane.current.rotation.x,
+          airplane.current.rotation.y, 
+          bankangle
+         )
+
+    )
+
+   
+
+    airplane.current.quaternion.slerp(targetairplanequaternion,delta*2);
+
+
+
+
   });
+
 
       
   
@@ -102,79 +199,16 @@ export const Experience = () => {
       </Float>
       </group>
       </group>
+       
+      {
+        textSection.map((textSection,index) =>(
 
-      <group position={[2,2,3]}>
-      <Text
-      color = "white"
-      anchorX = {"left"}
-      anchorY = {"middle"}
-      fontSize ={.5}
-      maxWidth = {2.5}
-      font={"/Fonts/Fuggles/Fuggles-Regular.ttf"}
-      >
-        Hii I am Riju Mondal{"\n"}
-        A Full Stack Developer and QA Engineer
-      </Text>
-      </group> 
+        <TextSection {...textSection} key={index}/>
 
-
-      <group position={[-2,3,-40]} >
-        <Text
-          color="white"
-          anchorX="right"
-          anchorY="middle"
-          fontSize={1}
-          maxWidth={2.5}
-          font="/Fonts/Fuggles/Fuggles-Regular.ttf"
-        >
-          Projects{"\n"}
-          1.Movie Recommendation App
-          2.Parallax Website
-
-        </Text>
-            
-      </group>
-
-
-
-      <group position={[4,3,-70]} >
-        <Text
-          color="white"
-          anchorX="right"
-          anchorY="middle"
-          fontSize={1}
-          maxWidth={2.5}
-          font="/Fonts/Fuggles/Fuggles-Regular.ttf"
-        >
-          Open Source Contribution{"\n"}
-          1.Cal.com
-          2.Home-Assistant
-
-        </Text>
-            
-      </group>
-
-
-
+        ))
+        }
       
-      <group position={[4,3,-100]} >
-        <Text
-          color="white"
-          anchorX="right"
-          anchorY="middle"
-          fontSize={1}
-          maxWidth={2.5}
-          font="/Fonts/Fuggles/Fuggles-Regular.ttf"
-        >
-          Profile{"\n"}
-          1.Leetcode
-          2.Linkedin
-          3.Github
-
-        </Text>
-            
-      </group>
-      
+  
       
       
  
@@ -212,7 +246,7 @@ export const Experience = () => {
       <Cloud opacity={0.7} scale={[0.8, 0.8, 0.8]} position={[-4, 6, -10]} />
       <Cloud opacity={0.5} scale={[0.8, 0.8, 0.8]} position={[-12, 5, -15]} />
       <Cloud opacity={0.5} scale={[0.8, 0.8, 0.8]} position={[-15, 8, -20]} />
-      <Cloud opacity={0.3} scale={[0.8, 0.8, 0.8]} position={[0, 1, -100]} />
+      <Cloud opacity={0.3} scale={[0.8, 0.8, 0.8]} position={[0, 1, -104]} />
 
       
     </>

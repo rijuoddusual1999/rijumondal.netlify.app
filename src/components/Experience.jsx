@@ -48,16 +48,92 @@ export const Experience = () => {
   const textSection = useMemo(() => {
     return[{
       position: new THREE.Vector3(
-        curvepoints[1].x-3,
-        curvepoints[1].y,
-        curvepoints[1].z
+        curvepoints[0].x-2,
+        curvepoints[0].y+0,
+        curvepoints[0].z-4
 
       ),
 
       title: 'Hii I am Riju Mondal, A Fullstack Developer && QA Engineer'
+    },
+    {
+      position: new THREE.Vector3(
+        curvepoints[2].x+9,
+        curvepoints[2].y+3,
+        curvepoints[2].z
+
+      ),
+
+      title: 'Open Source Contribution',
+      subtitle: '1.Grafana 2.Home-Assistant'
+    },
+    {
+      position: new THREE.Vector3(
+        curvepoints[3].x-1,
+        curvepoints[3].y+4,
+        curvepoints[3].z
+
+      ),
+
+      title: 'Projects',
+      subtitle: '1.Movie Recomendation App 2.Parallax Website'
+    },
+    {
+      position: new THREE.Vector3(
+        curvepoints[4].x+7,
+        curvepoints[4].y+3,
+        curvepoints[4].z
+
+      ),
+
+      title: 'Profiles',
+      subtitle: '1.Github   2.Leetcode 3.Linkedin'
     }
+
     ]
-  })
+  },[])
+
+
+  const clouds = useMemo(() => [
+    {
+      position: new THREE.Vector3(-10, 1, -13)
+    },
+    {
+      position: new THREE.Vector3(-5, 4, -13),
+      opacity: 0.3
+    },
+    {
+      position: new THREE.Vector3(6, -0.2, -13),
+      opacity: 0.3
+    },
+    {
+      position: new THREE.Vector3(-8, -0.2, -17),
+      opacity: 0.5
+    },
+    {
+      position: new THREE.Vector3(2, 1, -58),
+      opacity: 0.5
+    },
+    {
+      position: new THREE.Vector3(7, 6, -15)
+    },
+    {
+      position: new THREE.Vector3(2, 5, -20)
+    },
+    {
+      position: new THREE.Vector3(-3, 8, -25)
+    },
+    {
+      position: new THREE.Vector3(0, 1, -104)
+    }
+  ], []);
+  
+  
+  
+
+
+
+
 
 
 
@@ -228,26 +304,9 @@ export const Experience = () => {
         </mesh>
 
 
-      <Cloud opacity={0.5} scale={[0.3, 0.3, 0.3]} position={[-2, 1, -3]} />
-      <Cloud opacity={0.7} scale={[0.5, 0.5, 0.5]} position={[1.5, 4, -2]} />
-      <Cloud
-        opacity={0.7}
-        scale={[0.3, 0.3, 0.4]}
-        rotation-y={Math.PI / 9}
-        position={[2, -0.2, -5]}
-      />
-      <Cloud
-        opacity={0.7}
-        scale={[0.4, 0.4, 0.4]}
-        rotation-y={Math.PI / 9}
-        position={[1, -0.2, -12]}
-      />
-      <Cloud opacity={0.7} scale={[0.5, 0.5, 0.5]} position={[-1, 1, -53]} />
-      <Cloud opacity={0.7} scale={[0.8, 0.8, 0.8]} position={[-4, 6, -10]} />
-      <Cloud opacity={0.5} scale={[0.8, 0.8, 0.8]} position={[-12, 5, -15]} />
-      <Cloud opacity={0.5} scale={[0.8, 0.8, 0.8]} position={[-15, 8, -20]} />
-      <Cloud opacity={0.3} scale={[0.8, 0.8, 0.8]} position={[0, 1, -104]} />
-
+        {clouds.map((cloud, index) => (
+        <Cloud {...cloud} key={index} />
+      ))}
       
     </>
   );

@@ -279,7 +279,7 @@ export const Experience = () => {
       {
         textSection.map((textSection,index) =>(
 
-        <TextSection {...textSection} key={index}/>
+        <TextSection sceneOpacity={sceneOpacity} {...textSection} key={index}/>
 
         ))
         }

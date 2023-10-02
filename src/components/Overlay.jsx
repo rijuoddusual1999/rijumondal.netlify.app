@@ -11,7 +11,7 @@ export const Overlay = () =>{
             {progress === 100 && (
             <div className="intro">
                 <h1 className="logo">rijumondal.tech</h1>
-                <div className="scroll"><h3>Scroll to Experience</h3><span></span><span></span></div>
+                <div className="scroll"><h3>Scroll to Experience</h3></div>
             </div>
             )}
         </div>

@@ -20,7 +20,7 @@ function App() {
         <Experience />
         </ScrollControls>
       </Canvas>
-      {/*<Overlay/>*/}
+      <Overlay/>
     </>
   );
 }

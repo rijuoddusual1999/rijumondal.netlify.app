@@ -42,6 +42,8 @@ export const Experience = () => {
 
 
 
+  const sceneOpacity = useRef(0);
+  const lineMaterialRef = useRef();
 
 
 
@@ -144,12 +146,10 @@ export const Experience = () => {
 
 
 
-  const sceneOpacity = useRef(0);
-  const lineMaterialRef = useRef();
   
 
 
-  const linepoints = useMemo(() =>{
+    const linepoints = useMemo(() =>{
     return curve.getPoints(LINE_NB_POINTS)
 
   }, [curve]);
@@ -172,7 +172,7 @@ export const Experience = () => {
   useFrame((_state, delta) => {
 
     
-    
+    lineMaterialRef.current.opacity = sceneOpacity.current;
 
 
 
@@ -300,12 +300,12 @@ export const Experience = () => {
               },
             ]}
           />
-          <meshStandardMaterial color={"white"} opacity={0.7} transparent />
+          <meshStandardMaterial color={"white"} ref={lineMaterialRef}  transparent />
         </mesh>
 
 
         {clouds.map((cloud, index) => (
-        <Cloud {...cloud} key={index} />
+        <Cloud sceneOpacity={sceneOpacity} {...cloud} key={index} />
       ))}
       
     </>

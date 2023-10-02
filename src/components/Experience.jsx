@@ -4,9 +4,11 @@ import { Background } from "./background";
 import { Airplane } from "./airplane";
 import {Cloud} from "./cloud";
 import * as THREE from 'three';
-import { useMemo,useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo,useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { TextSection } from "./texts";
+import { usePlay } from "../context/play";
+import { gsap } from "gsap";
 
 
 
@@ -168,8 +170,18 @@ export const Experience = () => {
   const curve_ahead_camera = 0.007;
   const curve_ahead_airplane = 0.03;
   const max_bank_angle = 65;
+  const {play} = usePlay();
 
   useFrame((_state, delta) => {
+
+    if (play && sceneOpacity.current < 1) {
+      sceneOpacity.current = THREE.MathUtils.lerp(
+        sceneOpacity.current,
+        1,
+        delta * 0.5
+      );
+    }
+
 
     
     lineMaterialRef.current.opacity = sceneOpacity.current;
@@ -262,6 +274,31 @@ export const Experience = () => {
     
 
   const airplane = useRef();
+
+
+  const planeIn = useRef();
+
+  useLayoutEffect(()=>{
+    planeIn.current = gsap.timeline();
+    planeIn.current.pause();
+    planeIn.current.from(airplane.current.position,{
+      duration: 3,
+      z:5,
+      y: -2
+    });
+  },[]);
+
+
+
+  useEffect(() => {
+    if (play) {
+      planeIn.current.play();
+    }
+  }, [play]);
+
+
+
+
 
   return (
     <>

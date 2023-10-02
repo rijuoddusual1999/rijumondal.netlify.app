@@ -1,17 +1,30 @@
 import { Loader, useProgress } from "@react-three/drei"
+import { usePlay } from "../context/play";
 
 export const Overlay = () =>{
     
     const {progress} = useProgress();
+    const {setPlay, play} = usePlay();
 
 
     return(
-        <div className="overlay">
+        <div
+        className={`overlay ${play ? "overlay--disable" : ""}`}>
             <div className={`loader ${progress === 100 ? "loader-disappear" : ""}`} />
             {progress === 100 && (
-            <div className="intro">
+            <div className={`intro ${play ? "intro--disappear" : ""}`}>
                 <h1 className="logo">rijumondal.tech</h1>
-                <div className="scroll"><h3>Scroll to Experience</h3></div>
+                <p>
+                  Scroll to Experience
+                </p>
+                <div className="scroll"><button
+            className="explore"
+            onClick={() => {
+              setPlay(true);
+            }}
+          >
+            Start the Journey
+          </button></div>
             </div>
             )}
         </div>

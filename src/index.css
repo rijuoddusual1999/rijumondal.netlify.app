@@ -175,3 +175,34 @@ body {
 .overlay--disable{
   pointer-events: none;
 }
+
+
+.intro__scroll {
+  opacity: 0;
+  color: white;
+  font-family: 'Croissant One', cursive;
+  font-size: 1rem;
+  letter-spacing: 0.05rem;
+  position: absolute;
+  top: 24vh;
+}
+
+.intro--disappear .intro__scroll {
+  animation: fadeIn 1s ease-in-out 1.5s forwards;
+}
+
+.overlay--scrolled .intro__scroll {
+  animation: fadeOut 1s ease-in-out forwards;
+}
+
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

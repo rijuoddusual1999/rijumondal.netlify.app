@@ -4,7 +4,7 @@ import { usePlay } from "../context/play";
 export const Overlay = () =>{
     
     const {progress} = useProgress();
-    const {setPlay, play} = usePlay();
+    const {setPlay, play,hasScroll} = usePlay();
 
 
     return(
@@ -14,7 +14,7 @@ export const Overlay = () =>{
             {progress === 100 && (
             <div className={`intro ${play ? "intro--disappear" : ""}`}>
                 <h1 className="logo">rijumondal.tech</h1>
-                <p>
+                <p className="intro__scroll">
                   Scroll to Experience
                 </p>
                 <div className="scroll"><button

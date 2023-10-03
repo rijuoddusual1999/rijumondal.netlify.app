@@ -167,10 +167,11 @@ export const Experience = () => {
   
   const CameraGroup = useRef();
   const scroll = useScroll();
+  const lastScroll = useRef(0);
   const curve_ahead_camera = 0.007;
   const curve_ahead_airplane = 0.03;
   const max_bank_angle = 65;
-  const {play} = usePlay();
+  const {play,setHasScroll} = usePlay();
 
   useFrame((_state, delta) => {
 
@@ -180,6 +181,10 @@ export const Experience = () => {
         1,
         delta * 0.5
       );
+    }
+
+    if (lastScroll.current <= 0 && scroll.offset > 0) {
+      setHasScroll(true);
     }
 
 

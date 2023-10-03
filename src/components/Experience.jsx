@@ -171,7 +171,7 @@ export const Experience = () => {
   const curve_ahead_camera = 0.007;
   const curve_ahead_airplane = 0.03;
   const max_bank_angle = 65;
-  const {play,setHasScroll} = usePlay();
+  const {play,setHasScroll,end,setEnd} = usePlay();
 
   useFrame((_state, delta) => {
 
@@ -187,6 +187,19 @@ export const Experience = () => {
       setHasScroll(true);
     }
 
+
+
+    if (end && sceneOpacity.current > 0) {
+      sceneOpacity.current = THREE.MathUtils.lerp(
+        sceneOpacity.current,
+        0,
+        delta
+      );
+    }
+
+    if (end) {
+      return;
+    }
 
     
     lineMaterialRef.current.opacity = sceneOpacity.current;
@@ -267,6 +280,17 @@ export const Experience = () => {
 
 
 
+    if (
+      CameraGroup.current.position.z <
+      curvepoints[curvepoints.length - 1].z + 100
+    ) {
+      setEnd(true);
+      planeOutTl.current.play();
+    }
+
+
+
+
 
   });
 
@@ -282,6 +306,8 @@ export const Experience = () => {
 
 
   const planeIn = useRef();
+  const planeOutTl = useRef();
+  const cameraRail = useRef(new THREE.Object3D());
 
   useLayoutEffect(()=>{
     planeIn.current = gsap.timeline();
@@ -291,6 +317,33 @@ export const Experience = () => {
       z:5,
       y: -2
     });
+
+    planeOutTl.current = gsap.timeline();
+    planeOutTl.current.pause();
+
+    planeOutTl.current.to(
+      airplane.current.position,
+      {
+        duration: 10,
+        z: -250,
+        y: 10,
+      },
+      0
+    );
+    planeOutTl.current.to(
+      cameraRail.current.position,
+      {
+        duration: 8,
+        y: 12,
+      },
+      0
+    );
+    planeOutTl.current.to(airplane.current.position, {
+      duration: 1,
+      z: -1000,
+    });
+
+
   },[]);
 
 
@@ -305,7 +358,7 @@ export const Experience = () => {
 
 
 
-  return (
+  return useMemo(()=>(
     <>
       {/*<OrbitControls />*/}
       <group ref={CameraGroup} >
@@ -351,5 +404,5 @@ export const Experience = () => {
       ))}
       
     </>
-  );
+  ), []) ;
 };

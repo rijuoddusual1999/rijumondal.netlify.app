@@ -4,7 +4,7 @@ import { usePlay } from "../context/play";
 export const Overlay = () =>{
     
     const {progress} = useProgress();
-    const {setPlay, play,hasScroll} = usePlay();
+    const {setPlay,end, play,hasScroll} = usePlay();
 
 
     return(
@@ -29,7 +29,9 @@ export const Overlay = () =>{
           </button></div>
             </div>
             )}
-
+          <div className={`outro ${end ? "outro--appear" : ""}`}>
+        <p className="outro__text">I dedicate this site in the memory of Sir Terry Davis,the homeless schizophrenic genius</p>
+        </div>
         
         </div>
     )

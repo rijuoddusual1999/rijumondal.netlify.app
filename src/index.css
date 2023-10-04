@@ -220,7 +220,7 @@ body {
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: fadeIn 4s ease-in-out;
+  transition: opacity 4s ease-in-out;
 }
 
 .outro--appear {

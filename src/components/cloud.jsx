@@ -6,7 +6,7 @@ import { useGLTF } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import React, { useRef } from "react";
 
-export function Cloud({ sceneOpacity, ...props }) {
+export function Cloud({ sceneOpacity,opacity, ...props }) {
   const { nodes, materials } = useGLTF("./models/cloud/model.glb");
 
   const materialRef = useRef();
@@ -22,6 +22,7 @@ export function Cloud({ sceneOpacity, ...props }) {
            ref={materialRef}
           {...materials["lambert2SG.001"]}
           transparent
+          opacity={opacity}
           
         />
       </mesh>

@@ -28,6 +28,7 @@ export const Experience = () => {
       new THREE.Vector3(-5, 0, -2*curvedistance),
       new THREE.Vector3(-5, 0, -3*curvedistance),
       new THREE.Vector3(0, 0, -5*curvedistance),
+      new THREE.Vector3(0, 0, -10*curvedistance),
       
     ],[]
 
@@ -100,26 +101,26 @@ export const Experience = () => {
 
   const clouds = useMemo(() => [
     {
-      position: new THREE.Vector3(-10, 1, -13)
+      position: new THREE.Vector3(-10, -3, -63)
     },
     {
-      position: new THREE.Vector3(-5, 4, -13),
-      opacity: 0.3
+      position: new THREE.Vector3(-5, -4, -33),
+     
     },
     {
-      position: new THREE.Vector3(6, -0.2, -13),
-      opacity: 0.3
+      position: new THREE.Vector3(6, -5, -33),
+     
     },
     {
-      position: new THREE.Vector3(-8, -0.2, -17),
-      opacity: 0.5
+      position: new THREE.Vector3(-8, -8, -37),
+      
     },
     {
-      position: new THREE.Vector3(2, 1, -58),
-      opacity: 0.5
+      position: new THREE.Vector3(-7, 8, -58),
+      
     },
     {
-      position: new THREE.Vector3(7, 6, -15)
+      position: new THREE.Vector3(9, 6, -15)
     },
     {
       position: new THREE.Vector3(2, 5, -20)
@@ -128,7 +129,7 @@ export const Experience = () => {
       position: new THREE.Vector3(-3, 8, -25)
     },
     {
-      position: new THREE.Vector3(0, 1, -104)
+      position: new THREE.Vector3(-6, 1, -104)
     }
   ], []);
   
@@ -280,10 +281,10 @@ export const Experience = () => {
 
 
 
-    if (
-      CameraGroup.current.position.z <
-      curvepoints[curvepoints.length - 1].z + 100
-    ) {
+    if (CameraGroup.current.position.z <curvepoints[curvepoints.length - 1].z + 100)
+      
+      
+     {
       setEnd(true);
       planeOutTl.current.play();
     }
@@ -342,7 +343,7 @@ export const Experience = () => {
       duration: 1,
       z: -1000,
     });
-
+    
 
   },[]);
 

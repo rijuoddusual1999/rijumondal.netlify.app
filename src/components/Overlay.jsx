@@ -29,9 +29,7 @@ export const Overlay = () =>{
           </button></div>
             </div>
             )}
-          <div className={`outro ${end ? "outro--appear" : ""}`}>
-        <p className="outro__text">I dedicate this site in the memory of Sir Terry Davis,the homeless schizophrenic genius</p>
-        </div>
+         
         
         </div>
     )

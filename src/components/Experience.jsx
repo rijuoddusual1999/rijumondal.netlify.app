@@ -70,7 +70,7 @@ export const Experience = () => {
       ),
 
       title: 'Open Source Contribution',
-      subtitle: '1.Grafana 2.Home-Assistant'
+      subtitle: '1.Debugging with Terry Davis    2.Hashmapping my proverty'
     },
     {
       position: new THREE.Vector3(
@@ -169,12 +169,15 @@ export const Experience = () => {
   const CameraGroup = useRef();
   const scroll = useScroll();
   const lastScroll = useRef(0);
+  const Camera = useRef();
   const curve_ahead_camera = 0.007;
   const curve_ahead_airplane = 0.03;
   const max_bank_angle = 65;
   const {play,setHasScroll,end,setEnd} = usePlay();
 
   useFrame((_state, delta) => {
+
+   
 
     if (play && sceneOpacity.current < 1) {
       sceneOpacity.current = THREE.MathUtils.lerp(
@@ -364,7 +367,7 @@ export const Experience = () => {
       {/*<OrbitControls />*/}
       <group ref={CameraGroup} >
       <Background/>
-      <PerspectiveCamera position={[0, 2, 12]} fov={30} makeDefault />
+      <PerspectiveCamera ref={Camera} position={[0, 2, 12]} fov={30} makeDefault />
       <group ref={airplane}>
       <Float floatIntensity={2} speed={2}>
       <Airplane rotation-y={Math.PI / 1} scale={[0.2, 0.2, 0.2]} position-y={0.4} />

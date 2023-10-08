@@ -29,9 +29,7 @@ export const Overlay = () =>{
           </button></div>
             </div>
             )}
-          <div className={`outro ${end ? "outro--appear" : ""}`}>
-        <p className="outro__text">Get Placed King</p>
-        </div>
+         
         
         </div>
     )

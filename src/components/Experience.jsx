@@ -177,7 +177,24 @@ export const Experience = () => {
 
   useFrame((_state, delta) => {
 
-   
+    if (window.innerWidth > window.innerHeight) {
+      // Check if the screen width is less than or equal to a threshold value (e.g., 768 pixels, which is a common breakpoint for mobile devices in landscape).
+      if (window.innerWidth <= 768) {
+        // LANDSCAPE on a small screen
+        Camera.current.fov = 70;
+        Camera.current.position.z = 12;
+      } else {
+        // LANDSCAPE on a larger screen
+        // You can set different camera properties for larger landscape screens if needed.
+        Camera.current.fov = 35;
+        Camera.current.position.z = 10;
+      }
+    } else {
+      // PORTRAIT (or small screen)
+      Camera.current.fov = 122;
+      Camera.current.position.z = 4;
+      Camera.current.position.y = 1.2
+    }
 
     if (play && sceneOpacity.current < 1) {
       sceneOpacity.current = THREE.MathUtils.lerp(

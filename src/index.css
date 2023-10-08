@@ -263,4 +263,11 @@ body {
     animation: fadeIn 2.4s ease-in-out 2s forwards;
     opacity: 1;
   }
+
+  .intro__scroll{
+    display: flex;
+    justify-content: center;
+    font-size: 1.2rem;
+
+  }
 }

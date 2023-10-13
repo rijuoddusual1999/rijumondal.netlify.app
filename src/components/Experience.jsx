@@ -64,35 +64,48 @@ export const Experience = () => {
     {
       position: new THREE.Vector3(
         curvepoints[2].x+9,
-        curvepoints[2].y+3,
+        curvepoints[2].y+4.1,
         curvepoints[2].z
 
       ),
 
-      title: 'Open Source Contribution',
-      subtitle: '1.Debugging with Terry Davis    2.Hashmapping my proverty'
+      title: 'Projects',
+      
+      subtitle1: '1.Simple Parallax Website',
+      subtitle2: '2.Movie Recomendation App',
+      subtitleLinkURL1: 'https://github.com/rijuoddusual1999/simpleparallax',
+      subtitleLinkURL2: 'https://github.com/rijuoddusual1999/Movies-Tvshows-Recommendation-System'
+
     },
     {
       position: new THREE.Vector3(
         curvepoints[3].x-1,
-        curvepoints[3].y+4,
+        curvepoints[3].y+3.8,
         curvepoints[3].z
 
       ),
 
-      title: 'Projects',
-      subtitle: '1.Movie Recomendation App 2.Parallax Website'
+      title: 'Open Source Contribution',
+      subtitle1: '1.Debugging with Terry Davis',
+      subtitle2: '2. Hashmapping my proverty'
     },
     {
       position: new THREE.Vector3(
-        curvepoints[4].x+7,
-        curvepoints[4].y+3,
+        curvepoints[4].x+4,
+        curvepoints[4].y+3.8,
         curvepoints[4].z
 
       ),
 
       title: 'Profiles',
-      subtitle: '1.Github   2.Leetcode 3.Linkedin'
+      subtitle1: '1.Github',
+      subtitle2: '2.Leetcode',
+      subtitle3: '3.Linkedin',
+      subtitleLinkURL1: 'https://github.com/rijuoddusual1999',
+      subtitleLinkURL2: 'https://leetcode.com/riju1/',
+      subtitleLinkURL3: 'https://www.linkedin.com/in/riju-mondal-137686244/'
+      
+
     }
 
     ]

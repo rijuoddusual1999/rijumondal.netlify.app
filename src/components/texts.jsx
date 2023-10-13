@@ -47,7 +47,7 @@ export const TextSection = ({ sceneOpacity, title,subtitleLinkURL1,subtitleLinkU
           anchorX="right"
           anchorY="bottom"
           fontSize={1}
-          maxWidth={3.5}
+          maxWidth={5}
           font="/Fonts/Fuggles/Fuggles-Regular.ttf"
         >
           {title}

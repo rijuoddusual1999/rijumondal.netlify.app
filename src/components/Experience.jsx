@@ -63,7 +63,7 @@ export const Experience = () => {
     },
     {
       position: new THREE.Vector3(
-        curvepoints[2].x+9,
+        curvepoints[2].x+11,
         curvepoints[2].y+4.1,
         curvepoints[2].z
 
@@ -73,19 +73,21 @@ export const Experience = () => {
       
       subtitle1: '1.Simple Parallax Website',
       subtitle2: '2.Movie Recomendation App',
+      subtitle3: '3.ETL-processes-build-for-Vendor',
       subtitleLinkURL1: 'https://github.com/rijuoddusual1999/simpleparallax',
-      subtitleLinkURL2: 'https://github.com/rijuoddusual1999/Movies-Tvshows-Recommendation-System'
+      subtitleLinkURL2: 'https://github.com/rijuoddusual1999/Movies-Tvshows-Recommendation-System',
+      subtitleLinkURL3: 'https://github.com/rijuoddusual1999/ETL-processes-build-for-Vendor'
 
     },
     {
       position: new THREE.Vector3(
         curvepoints[3].x-1,
-        curvepoints[3].y+3.8,
+        curvepoints[3].y+4,
         curvepoints[3].z
 
       ),
 
-      title: 'Open Source Contribution',
+      title: 'Work Experience',
       subtitle1: '1.Debugging with Terry Davis',
       subtitle2: '2. Hashmapping my proverty'
     },

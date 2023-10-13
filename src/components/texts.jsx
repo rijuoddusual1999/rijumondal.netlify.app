@@ -2,53 +2,56 @@ import { Text } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import React, { useRef, useState } from "react";
 
-export const TextSection = ({ sceneOpacity, title, subtitle,  ...props }) => {
-  const materialRef = useRef();
-  const titlematerialRef = useRef();
-  const [hovered, setHover] = useState(false);
+export const TextSection = ({ sceneOpacity, title, subtitle, ...props }) => {
+  const titleMaterialRef = useRef();
+  const subtitleMaterialRef = useRef();
+  const [titleHovered, setTitleHover] = useState(false);
+  const [subtitleHovered, setSubtitleHover] = useState(false);
   const { camera } = useThree();
-  const linkURL = "https://www.google.com";
+  
+  const subtitleLinkURL = "https://www.google.com"; // Change the link for the subtitle as needed
 
-  const handleClick = () => {
-    window.open(linkURL, "_blank"); // Open the link in a new tab/window
+  const handleTitleClick = () => {
+    window.open(titleLinkURL, "_blank");
+  };
+
+  const handleSubtitleClick = () => {
+    window.open(subtitleLinkURL, "_blank");
   };
 
   useFrame(() => {
-    materialRef.current.opacity = sceneOpacity.current;
-    titlematerialRef.current.opacity = sceneOpacity.current;
+    titleMaterialRef.current.opacity = sceneOpacity.current;
+    subtitleMaterialRef.current.opacity = sceneOpacity.current;
   });
 
   return (
     <>
       <group {...props}>
         <Text
-          color={hovered ? "blue" : "white"}
+          color={titleHovered ? "blue" : "white"}
           anchorX="right"
           anchorY="bottom"
           fontSize={1}
           maxWidth={3.5}
           font="/Fonts/Fuggles/Fuggles-Regular.ttf"
-          onPointerOver={() => setHover(true)}
-          onPointerOut={() => setHover(false)}
-          onClick={handleClick}
         >
           {title}
-          <meshStandardMaterial ref={titlematerialRef} />
+          <meshStandardMaterial ref={titleMaterialRef} />
         </Text>
 
         <Text
-          color={hovered ? "blue" : "white"}
+          color={subtitleHovered ? "red" : "white"}
           anchorX="right"
           anchorY="top"
           fontSize={0.7}
           maxWidth={3.5}
           font="/Fonts/Fuggles/Fuggles-Regular.ttf"
-          onPointerOver={() => setHover(true)}
-          onPointerOut={() => setHover(false)}
-          onClick={handleClick}
+          onPointerOver={() => setSubtitleHover(true)}
+          onPointerOut={() => setSubtitleHover(false)}
+          onClick={handleSubtitleClick}
         >
           {subtitle}
-          <meshStandardMaterial ref={materialRef} />
+          <meshStandardMaterial ref={subtitleMaterialRef} />
         </Text>
       </group>
     </>

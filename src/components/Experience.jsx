@@ -59,7 +59,7 @@ export const Experience = () => {
 
       ),
 
-      title: 'Hii I am Riju Mondal, A Fullstack Developer && QA Engineer'
+      title: 'Hii I am Riju Mondal, A Frontend Developer && QA Engineer'
     },
     {
       position: new THREE.Vector3(
@@ -82,14 +82,22 @@ export const Experience = () => {
     {
       position: new THREE.Vector3(
         curvepoints[3].x-1,
-        curvepoints[3].y+4,
+        curvepoints[3].y+5,
         curvepoints[3].z
 
       ),
 
       title: 'Work Experience',
-      subtitle1: '1.Debugging with Terry Davis',
-      subtitle2: '2. Hashmapping my proverty'
+      subtitle1: '1.QA Engineering on Backend/DE front',
+      subtitle2: '2.QA Engineering on Frontend/Mashup UI',
+      subtitle3: '3.Tech Stack && Skills',
+      subtitleLinkURL1:'https://qaexp.netlify.app/category/quality-assurance-for-backenddataengineering',
+      subtitleLinkURL2:'https://qaexp.netlify.app/category/quality-assurance-for-frontendmashup-ui',
+      
+      
+
+
+
     },
     {
       position: new THREE.Vector3(
@@ -206,7 +214,7 @@ export const Experience = () => {
       }
     } else {
       // PORTRAIT (or small screen)
-      Camera.current.fov = 122;
+      Camera.current.fov = 128;
       Camera.current.position.z = 4;
       Camera.current.position.y = 1.2
     }

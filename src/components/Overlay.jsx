@@ -15,7 +15,7 @@ export const Overlay = () =>{
             <div className={`loader ${progress === 100 ? "loader-disappear" : ""}`} />
             {progress === 100 && (
             <div className={`intro ${play ? "intro--disappear" : ""}`}>
-                <h1 className="logo">rijumondal.tech</h1>
+                <h1 className="logo">rijumondal.netlify.app</h1>
                 <p className="intro__scroll">
                   Scroll to Experience
                 </p>
@@ -29,6 +29,10 @@ export const Overlay = () =>{
           </button></div>
             </div>
             )}
+
+        <div className={`outro ${end ? "outro--appear" : ""}`}>
+          <p className="outro__text">It's funny how some 1, 0 and some in between has made the entire Universe</p>
+        </div>
          
         
         </div>

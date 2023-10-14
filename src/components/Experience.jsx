@@ -90,7 +90,6 @@ export const Experience = () => {
       title: 'Work Experience',
       subtitle1: '1.QA Engineering on Backend/DE front',
       subtitle2: '2.QA Engineering on Frontend/Mashup UI',
-      subtitle3: '3.Tech Stack && Skills',
       subtitleLinkURL1:'https://qaexp.netlify.app/category/quality-assurance-for-backenddataengineering',
       subtitleLinkURL2:'https://qaexp.netlify.app/category/quality-assurance-for-frontendmashup-ui',
       

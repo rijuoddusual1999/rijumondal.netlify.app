@@ -71,12 +71,12 @@ export const Experience = () => {
 
       title: 'Projects',
       
-      subtitle1: '1.Simple Parallax Website',
+      subtitle1: '1. Live Stocks Dashboard',
       subtitle2: '2.Movie Recomendation App',
-      subtitle3: '3.ETL-processes-build-for-Vendor',
-      subtitleLinkURL1: 'https://github.com/rijuoddusual1999/simpleparallax',
+      subtitle3: '3.Find & Highlight Chrome Extension',
+      subtitleLinkURL1: 'https://github.com/rijuoddusual1999/Stock_Display_Dashboard',
       subtitleLinkURL2: 'https://github.com/rijuoddusual1999/Movies-Tvshows-Recommendation-System',
-      subtitleLinkURL3: 'https://github.com/rijuoddusual1999/ETL-processes-build-for-Vendor'
+      subtitleLinkURL3: 'https://github.com/rijuoddusual1999/Find-Highlight'
 
     },
     {

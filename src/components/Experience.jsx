@@ -71,7 +71,7 @@ export const Experience = () => {
 
       title: 'Projects',
       
-      subtitle1: '1. Live Stocks Dashboard',
+      subtitle1: '1.Real Time Stocks Dashboard',
       subtitle2: '2.Movie Recomendation App',
       subtitle3: '3.Find & Highlight Chrome Extension',
       subtitleLinkURL1: 'https://github.com/rijuoddusual1999/Stock_Display_Dashboard',

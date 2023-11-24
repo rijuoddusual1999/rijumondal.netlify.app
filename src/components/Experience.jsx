@@ -59,7 +59,7 @@ export const Experience = () => {
 
       ),
 
-      title: 'Hii I am Riju Mondal, A Frontend Developer && QA Engineer'
+      title: 'Hii I am Riju Mondal, A Full Stack Developer && QA Engineer'
     },
     {
       position: new THREE.Vector3(
@@ -71,12 +71,12 @@ export const Experience = () => {
 
       title: 'Projects',
       
-      subtitle1: '1.Real Time Stocks Dashboard',
-      subtitle2: '2.Movie Recomendation App',
-      subtitle3: '3.Find & Highlight Chrome Extension',
-      subtitleLinkURL1: 'https://github.com/rijuoddusual1999/Stock_Display_Dashboard',
-      subtitleLinkURL2: 'https://github.com/rijuoddusual1999/Movies-Tvshows-Recommendation-System',
-      subtitleLinkURL3: 'https://github.com/rijuoddusual1999/Find-Highlight'
+      subtitle1: '1.BlogBraniac - AI Blog Generator',
+      subtitle2: '2.Real Time Stocks Dashboard',
+      subtitle3: '3.Movie Recomendation App',
+      subtitleLinkURL1: 'https://github.com/rijuoddusual1999/AISEObloggenerator',
+      subtitleLinkURL2: 'https://github.com/rijuoddusual1999/Stock_Display_Dashboard',
+      subtitleLinkURL3: 'https://github.com/rijuoddusual1999/Movies-Tvshows-Recommendation-System'
 
     },
     {

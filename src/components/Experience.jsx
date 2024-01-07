@@ -68,15 +68,15 @@ export const Experience = () => {
         curvepoints[2].z
 
       ),
-
+                                                                        
       title: 'Projects',
       
-      subtitle1: '1.BlogBraniac - AI Blog Generator',
-      subtitle2: '2.Real Time Stocks Dashboard',
-      subtitle3: '3.Movie Recomendation App',
-      subtitleLinkURL1: 'https://github.com/rijuoddusual1999/AISEObloggenerator',
-      subtitleLinkURL2: 'https://github.com/rijuoddusual1999/Stock_Display_Dashboard',
-      subtitleLinkURL3: 'https://github.com/rijuoddusual1999/Movies-Tvshows-Recommendation-System'
+      subtitle1: '1.Movie Recomendation App',                                                                            
+      subtitle2: '2.BlogBraniac - AI Blog Generator',
+      subtitle3: '3.Real Time Stocks Dashboard',
+      subtitleLinkURL1: 'https://github.com/rijuoddusual1999/MovieRecommendationApp',
+      subtitleLinkURL2: 'https://github.com/rijuoddusual1999/AISEObloggenerator',
+      subtitleLinkURL3: 'https://github.com/rijuoddusual1999/Stock_Display_Dashboard'
 
     },
     {
